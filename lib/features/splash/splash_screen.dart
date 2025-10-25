@@ -1,12 +1,27 @@
-import 'package:crafty_bay/features/splash/splash_screen_controller.dart';
+import 'package:crafty_bay/app/paths/assets_path.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class SplashScreen extends GetView<SplashScreenController> {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container(color: Colors.pinkAccent));
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 20,
+          children: [
+            SvgPicture.asset(AssetsPath.logoPath),
+          ],
+        ),
+      ),
+    );
   }
 }
