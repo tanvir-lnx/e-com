@@ -1,6 +1,7 @@
-import 'package:crafty_bay/app/language_localization.dart';
+import 'package:crafty_bay/app/routes/app_pages.dart';
+import 'package:crafty_bay/app/routes/app_routes.dart';
+import 'package:crafty_bay/app/utils/language_localization.dart';
 import 'package:crafty_bay/app/theme/app_theme_data.dart';
-import 'package:crafty_bay/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,11 +11,13 @@ class CraftyBay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashScreen(),
+      initialRoute: AppRoutes.splashScreen,
+
       theme: AppThemeData.lightThemeData,
       translations: LanguageLocalization(),
       locale: Locale('en', 'US'),
       fallbackLocale: Locale('en', 'US'),
+      getPages: AppPages.pages,
     );
   }
 }
