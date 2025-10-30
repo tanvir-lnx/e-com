@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CarftyField extends StatelessWidget {
   final String hintText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   const CarftyField({
     required this.hintText,

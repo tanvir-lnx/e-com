@@ -32,19 +32,27 @@ class LoginScreenController extends GetxController {
   String? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
       return 'Password is required';
-    } else if (password.length > 8) {
+    } else if (password.length < 8) {
       return 'Password must be at least 8 characters';
     } else {
       return null;
     }
   }
 
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
+
   Future<void> onSubmit() async {
     isLoading.value = true;
-    Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 2));
     if (!(_loginAuthGlobalKey.currentState?.validate() ?? false)) return;
     Get.offNamed(AppRoutes.mainNavHolder);
     isLoading.value = false;
+  }
+
+  void goToSignUpScreen() {
+    Get.toNamed(AppRoutes.signUpScreen);
   }
 
   @override

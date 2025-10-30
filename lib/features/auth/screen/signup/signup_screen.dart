@@ -1,14 +1,12 @@
-import 'package:crafty_bay/app/theme/app_color.dart';
 import 'package:crafty_bay/app/utils/assets_path.dart';
-import 'package:crafty_bay/features/auth/screen/login/login_screen_controller.dart';
+import 'package:crafty_bay/features/auth/screen/signup/signup_screen_controller.dart';
 import 'package:crafty_bay/features/common/widgets/crafty_field.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends GetView<LoginScreenController> {
-  const LoginScreen({super.key});
+class SignupScreen extends GetView<SignupScreenController> {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,7 @@ class LoginScreen extends GetView<LoginScreenController> {
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Form(
-            key: controller.loginAuthGlobalKey,
+            key: controller.signUpAuthKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,24 +28,41 @@ class LoginScreen extends GetView<LoginScreenController> {
                   width: 85,
                   child: SvgPicture.asset(AssetsPath.logoSvgPath),
                 ),
-                Text('Welcome Back', style: Get.textTheme.titleLarge),
+                Text('Create New Account', style: Get.textTheme.titleLarge),
                 Text(
-                  'Please Enter Your Email Address',
+                  'Enter Your Details Below',
                   style: Get.textTheme.titleSmall,
                 ),
                 const SizedBox(height: 10),
 
                 CarftyField(
-                  controller: controller.emailTextEditingController,
-                  validator: (value) => controller.validateEmail(value),
-                  hintText: 'Email Address',
+                  controller: controller.firstNameTextEditingController,
+                  validator: (value) => controller.validateFirstName(value),
+                  hintText: 'First Name',
+                ),
+                CarftyField(
+                  controller: controller.lastNameTextEditingController,
+                  validator: (value) => controller.validateLastName(value),
+                  hintText: 'Last Name',
+                ),
+                CarftyField(
+                  controller: controller.mobileTextEditingController,
+                  validator: (value) => controller.validateMobile(value),
+                  hintText: 'Mobile',
+                ),
+                CarftyField(
+                  controller: controller.addressTextEditingController,
+                  validator: (value) => controller.validateAddress(value),
+                  hintText: 'Address',
                 ),
                 CarftyField(
                   controller: controller.passwordTextEditingController,
                   validator: (value) => controller.validatePassword(value),
                   hintText: 'Password',
                 ),
+
                 const SizedBox(height: 16),
+
                 Obx(() {
                   return SizedBox(
                     height: 46,
@@ -61,27 +76,14 @@ class LoginScreen extends GetView<LoginScreenController> {
                               width: 20,
                               child: CircularProgressIndicator.adaptive(),
                             )
-                          : const Text('Next'),
+                          : const Text('Sign Up'),
                     ),
                   );
                 }),
-                const SizedBox(height: 8),
-                RichText(
-                  text: TextSpan(
-                    text: 'Don\'t have an account?',
-                    style: TextStyle(color: Colors.black),
-                    children: [
-                      TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = controller.goToSignUpScreen,
-                        text: ' Sign Up',
-                        style: TextStyle(
-                          color: AppColor.themeColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('Back to login'),
                 ),
               ],
             ),

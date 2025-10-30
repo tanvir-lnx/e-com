@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class SplashScreenController extends GetxController {
   Future<void> goToLoginScreen() async {
     await Future.delayed(Duration(seconds: 1));
-    Get.offAndToNamed(AppRoutes.loginScreen);
+    Get.offAndToNamed(AppRoutes.mainNavHolder);
   }
 
   @override

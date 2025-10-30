@@ -1,31 +1,49 @@
-import 'package:crafty_bay/app/utils/assets_path.dart';
+import 'package:crafty_bay/app/theme/app_color.dart';
+import 'package:crafty_bay/features/home/main/main_nav_holder_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/state_manager.dart';
 
-class MainNavHolder extends StatelessWidget {
+class MainNavHolder extends GetView<MainNavHolderController> {
   const MainNavHolder({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 14.0, right: 14),
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              leading: SizedBox.expand(
-                
-                child: Image.asset(AssetsPath.navLogoPath),
-              ),
-              actions: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.man_2)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.man_2)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.man_2)),
-              ],
+      body: Obx(() {
+        return IndexedStack(
+          index: controller.selectedIndex.value,
+          children: controller.navigationDestinationScreens,
+        );
+      }),
+      bottomNavigationBar: Obx(() {
+        return NavigationBar(
+          height: 66,
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          indicatorColor: AppColor.themeColor.withValues(alpha: .2),
+
+          selectedIndex: controller.selectedIndex.value,
+          onDestinationSelected: controller.changePage,
+          destinations: [
+            NavigationDestination(
+              icon: Icon(CupertinoIcons.home),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: Icon(CupertinoIcons.collections),
+              label: 'Catergories',
+            ),
+            NavigationDestination(
+              icon: Icon(CupertinoIcons.cart),
+              label: 'Cart',
+            ),
+            NavigationDestination(
+              icon: Icon(CupertinoIcons.heart),
+              label: 'Wish',
             ),
           ],
-        ),
-      ),
+        );
+      }),
     );
   }
 }

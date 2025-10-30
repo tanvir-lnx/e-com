@@ -21,3 +21,4 @@ Future<void> main() async {
   await AppPackageInfo.getAppPackageInfo();
   runApp(CraftyBay());
 }
+ 
