@@ -1,6 +1,5 @@
 import 'package:crafty_bay/features/home/main/screens/category_screen/catergory_screen_controller.dart';
-import 'package:crafty_bay/features/home/main/screens/home_screen/home_screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:crafty_bay/features/home/shared/widgets/product_catergory_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

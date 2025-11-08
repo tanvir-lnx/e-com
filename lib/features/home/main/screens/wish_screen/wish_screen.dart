@@ -14,20 +14,22 @@ class WishScreen extends GetView<WishScreenController> {
         centerTitle: false,
         title: const Text('Wishs'),
         backgroundColor: Colors.white,
-        leading: PopScope(
-          onPopInvokedWithResult: (didPop, result) => controller.goToHome(),
-          child: BackButton(),
+        leading: BackButton(
+          onPressed: () {
+            controller.goToHome();
+          },
         ),
       ),
       body: GridView.builder(
-        padding: EdgeInsets.only(top: 8),
+        padding: EdgeInsets.only(top: 8
+        ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
         itemCount: 21,
         itemBuilder: (_, index) {
           return ProductCard(iconData: Icon(CupertinoIcons.trash));
-        },
+        },              
       ),
     );
   }

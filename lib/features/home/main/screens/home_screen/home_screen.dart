@@ -4,6 +4,7 @@ import 'package:crafty_bay/app/utils/assets_path.dart';
 import 'package:crafty_bay/features/common/widgets/app_bar_icon_button.dart';
 import 'package:crafty_bay/features/common/widgets/product_card.dart';
 import 'package:crafty_bay/features/home/main/screens/home_screen/home_screen_controller.dart';
+import 'package:crafty_bay/features/home/shared/widgets/product_catergory_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -140,8 +141,8 @@ class HomeScreen extends GetView<HomeScreenController> {
     return Obx(() {
       return AnimatedSmoothIndicator(
         effect: WormEffect(
-          dotHeight: 10,
-          dotWidth: 10,
+          dotHeight: 5,
+          dotWidth: 5,
           spacing: 5,
           activeDotColor: AppColor.themeColor,
           dotColor: Colors.grey.shade200,
@@ -173,29 +174,3 @@ class HomeScreen extends GetView<HomeScreenController> {
   }
 }
 
-class ProductCategoryItem extends StatelessWidget {
-  const ProductCategoryItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 5,
-      children: [
-        Container(
-          height: 70,
-          width: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColor.themeColor.withValues(alpha: .1),
-          ),
-          child: Icon(
-            CupertinoIcons.device_desktop,
-            size: 40,
-            color: AppColor.themeColor,
-          ),
-        ),
-        Text('Electronics', style: TextStyle(color: AppColor.themeColor)),
-      ],
-    );
-  }
-}

@@ -47,5 +47,13 @@ class AppThemeData {
         fontWeight: FontWeight.w600,
       ),
     ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        backgroundColor: AppColor.themeColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(10),
+        ),
+      ),
+    ),
   );
 }

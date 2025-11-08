@@ -15,4 +15,11 @@ class AssetsPath {
       'https://img.lazcdn.com/us/domino/c02019f4-4741-4e07-b2a4-94475ba2f4c9_BD-1976-688.jpg_2200x2200q80.jpg_.avif';
 
   static const String dummyImage = 'assets/images/dummy_shoe.png';
+
+  static const String productImageOne = 'assets/images/image_one.jpg';
+  static const String productImageTwo =
+      'assets/images/image_two.jpg';
+  
+  static const String productImageFour =
+      'assets/images/image_four.jpg';
 }

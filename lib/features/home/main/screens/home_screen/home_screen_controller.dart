@@ -25,4 +25,8 @@ class HomeScreenController extends GetxController {
     Get.back();
     SystemNavigator.pop();
   }
+
+  void goToSpecifiedProductCategory() {
+    
+  }
 }

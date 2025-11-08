@@ -1,6 +1,8 @@
 import 'package:crafty_bay/app/theme/app_color.dart';
 import 'package:crafty_bay/app/utils/assets_path.dart';
+import 'package:crafty_bay/features/common/widgets/item_inc_dec_button.dart';
 import 'package:crafty_bay/features/home/main/screens/cart_screen/cart_screen_controller.dart';
+import 'package:crafty_bay/features/product/product_details/product_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
@@ -20,11 +22,34 @@ class CartScreen extends GetView<CartScreenController> {
           child: BackButton(),
         ),
       ),
-      body: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (_, index) {
-          return ItemCartList();
-        },
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (_, index) {
+                    return ItemCartList();
+                  },
+                ),
+              ),
+              SizedBox(height: 80),
+            ],
+          ),
+          Container(
+            height: 80,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              ),
+              color: Colors.white,
+            ),
+          ),
+          PriceDetailsCart(buttonName: 'Checkout', height: 80),
+        ],
       ),
     );
   }
@@ -36,8 +61,9 @@ class ItemCartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 8),
       child: Card(
+        elevation: .2,
         child: Container(
           height: 120,
           decoration: BoxDecoration(
@@ -87,28 +113,10 @@ class ItemCartList extends StatelessWidget {
                     Icon(CupertinoIcons.trash),
 
                     Spacer(),
-                    Row(
-                      spacing: 6,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: AppColor.themeColor.withValues(alpha: .4),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Icon(Icons.remove),
-                        ),
-                        Text(
-                          '01',
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: AppColor.themeColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Icon(Icons.add),
-                        ),
-                      ],
+                    ItemIncDecButton(
+                      text: '',
+                      plusOnTap: () {},
+                      minusOnTap: () {},
                     ),
                   ],
                 ),
