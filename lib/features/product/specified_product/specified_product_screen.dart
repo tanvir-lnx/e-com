@@ -9,9 +9,9 @@ class SpecifiedProductScreen extends GetView<SpecifiedProductScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(controller.categoryName)),
+      appBar: AppBar(centerTitle: false, title: Text(controller.categoryName)),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

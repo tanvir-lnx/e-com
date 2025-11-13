@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay/app/theme/app_color.dart';
 import 'package:crafty_bay/app/utils/assets_path.dart';
@@ -37,14 +38,26 @@ class HomeScreen extends GetView<HomeScreenController> {
           child: Column(
             children: [
               _searchField(),
-              _carouselImageSilder(),
-              _carouselIndexIndicator(),
+              const SizedBox(height: 10),
+              Obx(() {
+                return controller.carsouselImages.isEmpty
+                    ? CircularProgressIndicator.adaptive()
+                    : Column(
+                        spacing: 5,
+                        children: [
+                          _carouselImageSilder(),
+                          _carouselIndexIndicator(),
+                        ],
+                      );
+              }),
               _headerTtitle(
                 onTap: controller.goToCategory,
                 title: 'All Categories',
               ),
               const SizedBox(height: 12),
-              _catergoryItemListView(),
+              Obx(() {
+                return _catergoryItemListView();
+              }),
               SizedBox(height: 10),
               _headerTtitle(title: 'Popular'),
               SizedBox(height: 10),
@@ -89,9 +102,10 @@ class HomeScreen extends GetView<HomeScreenController> {
 
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
+        itemCount: controller.allCatergoryModel.length,
         itemBuilder: (context, index) {
-          return ProductCategoryItem();
+          final items = controller.allCatergoryModel[index];
+          return ProductCategoryItem(title: items.title, icon: items.icon);
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(width: 16);
@@ -122,7 +136,13 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   CarouselSlider _carouselImageSilder() {
     return CarouselSlider(
-      items: controller.carsouselImages,
+      items: controller.carsouselImages
+          .map(
+            (imageModel) => Builder(
+              builder: (_) => CachedNetworkImage(imageUrl: imageModel.photoUrl),
+            ),
+          )
+          .toList(),
 
       options: CarouselOptions(
         padEnds: false,
@@ -173,4 +193,3 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 }
-

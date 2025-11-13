@@ -4,13 +4,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ProductCategoryItem extends StatelessWidget {
-  const ProductCategoryItem({super.key});
+  final String title;
+  final String icon;
+  const ProductCategoryItem({
+    super.key,
+    required this.title,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.specifiedProductScreen, arguments: {'categoryName':'Electronics'});
+        Get.toNamed(
+          AppRoutes.specifiedProductScreen,
+          arguments: {'categoryName': title},
+        );
       },
       child: Column(
         spacing: 5,
@@ -22,13 +31,9 @@ class ProductCategoryItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               color: AppColor.themeColor.withValues(alpha: .1),
             ),
-            child: Icon(
-              CupertinoIcons.device_desktop,
-              size: 40,
-              color: AppColor.themeColor,
-            ),
+            child: Image.network(icon),
           ),
-          Text('Electronics', style: TextStyle(color: AppColor.themeColor)),
+          Text(title, style: TextStyle(color: AppColor.themeColor)),
         ],
       ),
     );
