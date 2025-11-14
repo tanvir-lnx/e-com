@@ -33,7 +33,15 @@ class ProductCategoryItem extends StatelessWidget {
             ),
             child: Image.network(icon),
           ),
-          Text(title, style: TextStyle(color: AppColor.themeColor)),
+          Text(
+            title,
+            style: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              color: AppColor.themeColor,
+            ),
+            maxLines: 1,
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );

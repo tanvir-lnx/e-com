@@ -5,6 +5,7 @@ import 'package:crafty_bay/features/home/main/screens/wish_screen/wish_screen.da
 import 'package:get/get.dart';
 
 class MainNavHolderController extends GetxController {
+  
   final navigationDestinationScreens = [
     HomeScreen(),
     CategoryScreen(),

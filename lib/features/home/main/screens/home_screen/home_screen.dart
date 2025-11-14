@@ -35,43 +35,44 @@ class HomeScreen extends GetView<HomeScreenController> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              _searchField(),
-              const SizedBox(height: 10),
-              Obx(() {
-                return controller.carsouselImages.isEmpty
-                    ? CircularProgressIndicator.adaptive()
-                    : Column(
-                        spacing: 5,
-                        children: [
-                          _carouselImageSilder(),
-                          _carouselIndexIndicator(),
-                        ],
-                      );
-              }),
-              _headerTtitle(
-                onTap: controller.goToCategory,
-                title: 'All Categories',
-              ),
-              const SizedBox(height: 12),
-              Obx(() {
-                return _catergoryItemListView();
-              }),
-              SizedBox(height: 10),
-              _headerTtitle(title: 'Popular'),
-              SizedBox(height: 10),
-              _popularItemList(),
-              SizedBox(height: 10),
-
-              _headerTtitle(title: 'Special'),
-              SizedBox(height: 10),
-              _popularItemList(),
-              SizedBox(height: 10),
-              _headerTtitle(title: 'New'),
-              SizedBox(height: 10),
-              _popularItemList(),
-            ],
+          child: Obx(
+             () {
+              return Column(
+                children: [
+                  _searchField(),
+                  const SizedBox(height: 10),
+                  Column(
+                            spacing: 5,
+                            children: [
+                              _carouselImageSilder(),
+                              _carouselIndexIndicator(),
+                            ],
+                          ),
+                  
+                  _headerTtitle(
+                    onTap: controller.goToCategory,
+                    title: 'All Categories',
+                  ),
+                  const SizedBox(height: 12),
+              
+                  _catergoryItemListView(),
+              
+                  SizedBox(height: 10),
+                  _headerTtitle(title: 'Popular'),
+                  SizedBox(height: 10),
+                  _popularItemList(),
+                  SizedBox(height: 10),
+              
+                  _headerTtitle(title: 'Special'),
+                  SizedBox(height: 10),
+                  _popularItemList(),
+                  SizedBox(height: 10),
+                  _headerTtitle(title: 'New'),
+                  SizedBox(height: 10),
+                  _popularItemList(),
+                ],
+              );
+            }
           ),
         ),
       ),
@@ -102,7 +103,7 @@ class HomeScreen extends GetView<HomeScreenController> {
 
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: controller.allCatergoryModel.length,
+        itemCount: 5,
         itemBuilder: (context, index) {
           final items = controller.allCatergoryModel[index];
           return ProductCategoryItem(title: items.title, icon: items.icon);
@@ -157,8 +158,8 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  Obx _carouselIndexIndicator() {
-    return Obx(() {
+  AnimatedSmoothIndicator _carouselIndexIndicator() {
+    
       return AnimatedSmoothIndicator(
         effect: WormEffect(
           dotHeight: 5,
@@ -170,7 +171,7 @@ class HomeScreen extends GetView<HomeScreenController> {
         activeIndex: controller.currentPageIndex.value,
         count: controller.carsouselImages.length,
       );
-    });
+    }
   }
 
   TextField _searchField() {
@@ -192,4 +193,4 @@ class HomeScreen extends GetView<HomeScreenController> {
       ),
     );
   }
-}
+

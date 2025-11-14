@@ -13,12 +13,12 @@ class HomeScreenController extends GetxController {
   final AllCategoryRepo _allCategoryRepo = Get.find<AllCategoryRepo>();
   RxInt currentPageIndex = 0.obs;
   final RxList<SliderImageModel> carsouselImages = <SliderImageModel>[].obs;
-  final RxList<CategoryListModel> allCatergoryModel = <CategoryListModel>[].obs;
+   RxList<CategoryListModel> get allCatergoryModel => _allCategoryRepo.allCatergoryList;
 
   @override
   void onInit() {
    _fetchSliderImage();
-   _fetchAllCatergory();
+  
     super.onInit();
   }
 
@@ -33,17 +33,6 @@ class HomeScreenController extends GetxController {
     }
   }
 
-Future<void> _fetchAllCatergory() async {
-  try {
-    final List<CategoryListModel> items = await _allCategoryRepo.getAllCategory();
-    if (items.isNotEmpty) {
-      allCatergoryModel.assignAll(items);
-    }
-    
-  } catch (e) {
-    logger.d('Error fetching: $e');
-  }
-}
 
   void goToCategory() {
     Get.find<MainNavHolderController>().selectedIndex.value = 1;

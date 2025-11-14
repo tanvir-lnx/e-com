@@ -5,11 +5,17 @@ import 'package:crafty_bay/data/services/api_endpoints.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-class AllCategoryRepo {
+class AllCategoryRepo extends GetxService{
+  @override
+  void onInit() {
+    getAllCategory();
+    super.onInit();
+  }
   final Logger _logger = Logger();
   final ApiClient _client = Get.find<ApiClient>();
+final RxList<CategoryListModel> allCatergoryList = <CategoryListModel>[].obs;
 
-  Future<List<CategoryListModel>> getAllCategory() async {
+  Future<void> getAllCategory() async {
     final ApiResponse response = await _client.getRequest(
       endpoint: ApiEndpoints.catergoryListUrl,
     );
@@ -19,8 +25,8 @@ class AllCategoryRepo {
       final List<CategoryListModel> catergoryModel = catergoryList
           .map((jsonData) => CategoryListModel.fromJson(jsonData))
           .toList();
-          return catergoryModel;
+          allCatergoryList.assignAll(catergoryModel);
     }
-    return [];
+    
   }
 }

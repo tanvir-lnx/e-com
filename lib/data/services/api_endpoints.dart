@@ -4,4 +4,5 @@ class ApiEndpoints {
   // Slide endpoints
   static const String slideListUrl = '$_baseUrl/slides';
   static const String catergoryListUrl = '$_baseUrl/categories';
+  static String readCatergory(String id) => '$_baseUrl/categories/$id';
 }

@@ -22,16 +22,16 @@ class CategoryScreen extends GetView<CatergoryScreenController> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: GetBuilder<HomeScreenController>(
-            builder: (homeController) {
+          child: Obx(
+             () {
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: .75,
                   crossAxisCount: 4,
                 ),
-                itemCount: homeController.allCatergoryModel.length,
+                itemCount: controller.allCatergoryModel.length,
                 itemBuilder: (_, index) {
-                  final item = homeController.allCatergoryModel[index];
+                  final item = controller.allCatergoryModel[index];
                   return ProductCategoryItem(
                     title: item.title,
                     icon: item.icon,

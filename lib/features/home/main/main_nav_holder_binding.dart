@@ -12,8 +12,8 @@ class MainNavHolderBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(ApiClient());
-    Get.lazyPut(() => CarouselImageRepo());
-    Get.lazyPut(() => AllCategoryRepo());
+    Get.put(CarouselImageRepo());
+    Get.put(AllCategoryRepo());
         Get.put(MainNavHolderController());
     Get.put(HomeScreenController());
     Get.put(CatergoryScreenController());
